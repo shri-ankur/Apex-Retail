@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - db_data:/data
+      - ./events:/events:ro        # Detection pipeline output (read-only)
+      - ./videos:/videos:ro        # CCTV clips (read-only)
+      - ./store_layout.json:/app/store_layout.json:ro
+    environment:
+      - DB_PATH=/data/store_intelligence.db
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - API_URL=http://api:8000
+      - STORE_ID=STORE_BLR_002
+    restart: unless-stopped
+
+volumes:
+  db_data:
+    driver: local

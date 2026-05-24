@@ -1,0 +1,135 @@
+{
+  "stores": [
+    {
+      "store_id": "STORE_BLR_002",
+      "name": "Purplle Beauty — Bangalore",
+      "city": "Bangalore",
+      "brand": "purplle",
+      "open_hours": { "open": "10:00", "close": "22:00" },
+      "cameras": [
+        {
+          "camera_id": "CAM_ENTRY_01",
+          "source_file": "CAM_3.mp4",
+          "type": "entry_exit",
+          "codec": "h264",
+          "fps": 29.97,
+          "resolution": "1920x1080",
+          "description": "Entry/exit threshold — glass door, foyer, 'purplle' lightbox visible. Top-down angle. Entry direction: person moving from bottom-half (exterior/foyer) toward top-half (interior).",
+          "clip_start_utc": "2026-04-10T14:40:32Z",
+          "overlap_with": []
+        },
+        {
+          "camera_id": "CAM_FLOOR_A",
+          "source_file": "CAM_1.mp4",
+          "type": "main_floor",
+          "codec": "h264",
+          "fps": 29.97,
+          "resolution": "1920x1080",
+          "description": "Main floor section A — skincare/cleanser wall (The Face Shop, Minimalist, Dermaco, Klairs, COSRX), central display island, beauty advisor desk. Wide fisheye angle from ceiling mount.",
+          "clip_start_utc": "2026-04-10T14:40:57Z",
+          "overlap_with": ["CAM_FLOOR_B"]
+        },
+        {
+          "camera_id": "CAM_FLOOR_B",
+          "source_file": "CAM_2.mp4",
+          "type": "main_floor",
+          "codec": "h264",
+          "fps": 29.97,
+          "resolution": "1920x1080",
+          "description": "Main floor section B — makeup wall (L'Oreal, Swiss Beauty, Lakme, Faces Canada, Maybelline), summer essentials display island, accessories section. Fisheye from ceiling. Timestamp 20:10:32.",
+          "clip_start_utc": "2026-04-10T14:40:32Z",
+          "overlap_with": ["CAM_FLOOR_A"]
+        },
+        {
+          "camera_id": "CAM_BILLING_01",
+          "source_file": "CAM_5.mp4",
+          "type": "billing",
+          "codec": "hevc",
+          "fps": 25.0,
+          "resolution": "1920x1080",
+          "description": "Billing / POS counter — laptop POS terminal visible, staff at counter, accessories display TV. Customers approach from left. Staff-heavy zone; staff must be detected and excluded from customer queue metrics.",
+          "clip_start_utc": "2026-04-10T14:40:18Z",
+          "overlap_with": []
+        },
+        {
+          "camera_id": "CAM_STOCKROOM_01",
+          "source_file": "CAM_4.mp4",
+          "type": "stockroom",
+          "codec": "hevc",
+          "fps": 25.0,
+          "resolution": "1920x1080",
+          "description": "Back stockroom — inventory shelves, 'purplle' branded boxes, stool, water cooler. Staff-only zone; no customer events should be emitted. Any person detected here is staff by definition.",
+          "clip_start_utc": "2026-04-10T14:40:15Z",
+          "overlap_with": [],
+          "staff_only": true
+        }
+      ],
+      "zones": [
+        {
+          "zone_id": "ENTRY_THRESHOLD",
+          "name": "Entry / Exit Threshold",
+          "camera_ids": ["CAM_ENTRY_01"],
+          "type": "threshold",
+          "sku_zone": null,
+          "notes": "Glass door foyer. Direction determined by Y-position: bottom-half = inbound, top-half = outbound."
+        },
+        {
+          "zone_id": "SKINCARE",
+          "name": "Skincare & Cleansers",
+          "sku_zone": "SKINCARE",
+          "camera_ids": ["CAM_FLOOR_A"],
+          "type": "product",
+          "brands_visible": ["The Face Shop", "Minimalist", "Dermaco", "COSRX", "Klairs", "Farmstay", "Good Vibes"]
+        },
+        {
+          "zone_id": "MAKEUP",
+          "name": "Makeup & Colour Cosmetics",
+          "sku_zone": "MAKEUP",
+          "camera_ids": ["CAM_FLOOR_B"],
+          "type": "product",
+          "brands_visible": ["L'Oreal", "Swiss Beauty", "Lakme", "Faces Canada", "Maybelline"]
+        },
+        {
+          "zone_id": "SEASONAL_DISPLAY",
+          "name": "Seasonal / Promotional Display",
+          "sku_zone": "PROMO",
+          "camera_ids": ["CAM_FLOOR_B"],
+          "type": "product",
+          "brands_visible": ["Beat the Heat Summer Essentials"]
+        },
+        {
+          "zone_id": "ACCESSORIES",
+          "name": "Accessories",
+          "sku_zone": "ACCESSORIES",
+          "camera_ids": ["CAM_FLOOR_B"],
+          "type": "product",
+          "notes": "Left wall section in CAM_2 view"
+        },
+        {
+          "zone_id": "BEAUTY_ADVISOR_DESK",
+          "name": "Beauty Advisor / Consultation Desk",
+          "sku_zone": null,
+          "camera_ids": ["CAM_FLOOR_A"],
+          "type": "service",
+          "notes": "Mirror station on left of CAM_1. Staff-customer interaction zone."
+        },
+        {
+          "zone_id": "BILLING_COUNTER",
+          "name": "Billing Counter / POS",
+          "sku_zone": null,
+          "camera_ids": ["CAM_BILLING_01"],
+          "type": "billing",
+          "notes": "Laptop POS terminal. Staff always present. Queue depth tracked by occupancy excluding staff."
+        },
+        {
+          "zone_id": "STOCKROOM",
+          "name": "Stockroom (Staff Only)",
+          "sku_zone": null,
+          "camera_ids": ["CAM_STOCKROOM_01"],
+          "type": "staff_only",
+          "notes": "No customer events. All detections classified as is_staff=true."
+        }
+      ]
+    }
+  ]
+}

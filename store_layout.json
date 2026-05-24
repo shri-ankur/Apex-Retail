@@ -1,0 +1,23 @@
+{
+  "stores": [
+    {
+      "store_id": "STORE_BLR_002",
+      "name": "Apex Retail Bangalore MG Road",
+      "city": "Bangalore",
+      "open_hours": { "open": "09:00", "close": "21:00" },
+      "cameras": [
+        { "camera_id": "CAM_ENTRY_01", "type": "entry_exit", "description": "Entry/exit threshold camera" },
+        { "camera_id": "CAM_FLOOR_01", "type": "main_floor", "description": "Main floor zone coverage" },
+        { "camera_id": "CAM_BILLING_01", "type": "billing", "description": "Billing counter area" }
+      ],
+      "zones": [
+        { "zone_id": "ENTRY_THRESHOLD", "name": "Entry/Exit Threshold", "camera_ids": ["CAM_ENTRY_01"], "type": "threshold" },
+        { "zone_id": "SKINCARE", "name": "Skincare", "sku_zone": "MOISTURISER", "camera_ids": ["CAM_FLOOR_01"], "type": "product" },
+        { "zone_id": "HAIRCARE", "name": "Haircare", "sku_zone": "SHAMPOO", "camera_ids": ["CAM_FLOOR_01"], "type": "product" },
+        { "zone_id": "FRAGRANCE", "name": "Fragrance", "sku_zone": "PERFUME", "camera_ids": ["CAM_FLOOR_01"], "type": "product" },
+        { "zone_id": "PERSONAL_CARE", "name": "Personal Care", "sku_zone": "BODYCARE", "camera_ids": ["CAM_FLOOR_01"], "type": "product" },
+        { "zone_id": "BILLING_COUNTER", "name": "Billing Counter", "sku_zone": null, "camera_ids": ["CAM_BILLING_01"], "type": "billing" }
+      ]
+    }
+  ]
+}
